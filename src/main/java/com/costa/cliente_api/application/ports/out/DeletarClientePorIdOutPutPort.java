@@ -1,6 +1,6 @@
 package com.costa.cliente_api.application.ports.out;
 
-public interface DeletarClienteOutPutPort {
+public interface DeletarClientePorIdOutPutPort {
 
     void deletar(String id);
 

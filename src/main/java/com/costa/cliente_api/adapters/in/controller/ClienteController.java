@@ -6,6 +6,7 @@ import com.costa.cliente_api.adapters.in.controller.response.ClienteResponse;
 import com.costa.cliente_api.application.core.domain.Cliente;
 import com.costa.cliente_api.application.ports.in.AtualizarClienteInputPort;
 import com.costa.cliente_api.application.ports.in.BuscarClientePorIdInputPort;
+import com.costa.cliente_api.application.ports.in.DeletarClientePorIdInputPort;
 import com.costa.cliente_api.application.ports.in.InserirClienteInputPort;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class ClienteController {
 
     @Autowired
     private AtualizarClienteInputPort atualizarClienteInputPort;
+
+    @Autowired
+    private DeletarClientePorIdInputPort deletarClientePorIdInputPort;
 
     @Autowired
     private ClienteMapper clienteMapper;
@@ -47,6 +51,12 @@ public class ClienteController {
         Cliente cliente = clienteMapper.toCliente(clienteRequest);
         cliente.setId(id);
         atualizarClienteInputPort.atualizar(cliente, clienteRequest.getCep());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/id")
+    public ResponseEntity<Void> deletar(@PathVariable String id) {
+        deletarClientePorIdInputPort.deletar(id);
         return ResponseEntity.noContent().build();
     }
 
