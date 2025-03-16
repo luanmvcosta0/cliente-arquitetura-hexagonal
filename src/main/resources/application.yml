@@ -1,7 +1,7 @@
 costa:
   client:
-    address:
-      url: http://localhost:8082/addres
+    endereco:
+      url: http://localhost:8082/address
 
 spring:
   data:
