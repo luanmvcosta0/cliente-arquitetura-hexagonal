@@ -19,7 +19,7 @@ public class InserirClienteUseCase implements InserirClienteInputPort {
 
     @Override
     public void inserir(Cliente cliente, String cep) {
-        var endereco = buscarEnderecoPorCepOutPutPort.find(cep);
+        var endereco = buscarEnderecoPorCepOutPutPort.buscar(cep);
         cliente.setEndereco(endereco);
         inserirClienteOutPutPort.inserir(cliente);
     }

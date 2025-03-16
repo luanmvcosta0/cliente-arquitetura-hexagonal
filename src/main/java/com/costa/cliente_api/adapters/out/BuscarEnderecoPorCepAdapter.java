@@ -17,7 +17,7 @@ public class BuscarEnderecoPorCepAdapter implements BuscarEnderecoPorCepOutPutPo
     private EnderecoResponseMapper enderecoResponseMapper;
 
     @Override
-    public Endereco find(String cep) {
+    public Endereco buscar(String cep) {
         var enderecoResponse = buscarEnderecoPorCepClient.buscar(cep);
         return enderecoResponseMapper.toEndereco(enderecoResponse);
     }
