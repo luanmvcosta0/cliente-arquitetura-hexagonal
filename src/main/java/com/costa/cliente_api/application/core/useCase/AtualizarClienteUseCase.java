@@ -1,11 +1,12 @@
 package com.costa.cliente_api.application.core.useCase;
 
 import com.costa.cliente_api.application.core.domain.Cliente;
+import com.costa.cliente_api.application.ports.in.AtualizarClienteInputPort;
 import com.costa.cliente_api.application.ports.in.BuscarClientePorIdInputPort;
 import com.costa.cliente_api.application.ports.out.AtualizarClienteOutPutPort;
 import com.costa.cliente_api.application.ports.out.BuscarEnderecoPorCepOutPutPort;
 
-public class AtualizarClienteUseCase {
+public class AtualizarClienteUseCase implements AtualizarClienteInputPort {
 
     private final BuscarClientePorIdInputPort buscarClientePorIdInputPort;
     private final BuscarEnderecoPorCepOutPutPort buscarEnderecoPorCepOutPutPort;
@@ -20,6 +21,7 @@ public class AtualizarClienteUseCase {
         this.atualizarClienteOutPutPort = atualizarClienteOutPutPort;
     }
 
+    @Override
     public void atualizar(Cliente cliente, String cep) {
         buscarClientePorIdInputPort.buscar(cliente.getId());
         var endereco = buscarEnderecoPorCepOutPutPort.buscar(cep);
