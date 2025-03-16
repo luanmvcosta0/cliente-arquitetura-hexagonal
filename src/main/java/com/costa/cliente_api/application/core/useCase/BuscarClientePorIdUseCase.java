@@ -1,9 +1,10 @@
 package com.costa.cliente_api.application.core.useCase;
 
 import com.costa.cliente_api.application.core.domain.Cliente;
+import com.costa.cliente_api.application.ports.in.BuscarClientePorIdInputPort;
 import com.costa.cliente_api.application.ports.out.BuscarClientePorIdOutPutPort;
 
-public class BuscarClientePorIdUseCase {
+public class BuscarClientePorIdUseCase implements BuscarClientePorIdInputPort {
 
     private final BuscarClientePorIdOutPutPort buscarClientePorIdOutPutPort;
 
@@ -11,6 +12,7 @@ public class BuscarClientePorIdUseCase {
         this.buscarClientePorIdOutPutPort = buscarClientePorIdOutPutPort;
     }
 
+    @Override
     public Cliente buscar(String id) {
         return buscarClientePorIdOutPutPort.buscar(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
